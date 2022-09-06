@@ -11,7 +11,6 @@ email varchar(150) unique not null,
 senha varchar(15) not null,
 cep char(8) not null,
 nome_rua varchar(145) not null,
-numero_rua int not null,
 estado varchar(45) not null,
 cidade varchar(45) not null
 );
