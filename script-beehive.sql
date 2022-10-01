@@ -15,13 +15,14 @@ estado varchar(30) not null,
 cidade varchar(30) not null
 );
 
-
-
 create table usuario_suporte(
-id_usuariio int primary key auto_increment,
+id_usuario int primary key auto_increment,
 nome_suporte varchar(45) not null,
 email varchar(50) unique not null,
 senha varchar(50) not null,
+email_slack varchar(50) unique not null,
+telefone varchar(15) unique,
+celular char(15) unique,
 cpf char(14) unique not null,
 fk_empresa int,
 foreign key (fk_empresa) references empresa(id_empresa)
@@ -47,7 +48,3 @@ ram decimal,
 hd decimal
 
 );
-
-
-
-
