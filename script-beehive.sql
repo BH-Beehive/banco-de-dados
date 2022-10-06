@@ -1,6 +1,15 @@
 create database Beehive;
 use Beehive;
 
+create table plano(
+id_plano int primary key auto_increment,
+tipo_plano varchar(10),
+check ( tipo_plano = "Basic" or tipo_plano = "Standart" or tipo_plano = "Premium"),
+plano_ativo boolean,
+data_plano timestamp default current_timestamp not null,
+valor decimal(7,2)
+);
+
 create table empresa(
 id_empresa int primary key auto_increment,
 nome_empresa varchar(100) not null,
