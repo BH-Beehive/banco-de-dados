@@ -5,8 +5,6 @@ create table plano(
 id_plano int primary key auto_increment,
 tipo_plano varchar(10),
 check ( tipo_plano = "Basic" or tipo_plano = "Standart" or tipo_plano = "Premium"),
-plano_ativo boolean,
-data_plano timestamp default current_timestamp not null,
 valor decimal(7,2)
 );
 
@@ -21,7 +19,10 @@ senha varchar(25) not null,
 cep char(8) not null,
 logradouro varchar(45) not null,
 estado varchar(30) not null,
-cidade varchar(30) not null
+cidade varchar(30) not null,
+fk_plano int not null,
+foreign key (fk_plano) references planos(id_planos),
+plano_ativo boolean
 );
 
 create table usuario_suporte(
@@ -51,7 +52,7 @@ check (nivel_prioridade = 1 or nivel_prioridade = 2 or nivel_prioridade = 3)
 create table registro(
 id_registro int primary key auto_increment,
 data_registro timestamp default current_timestamp not null,
-fk_maquina int , 
+fk_maquina int not null, 
 foreign key (fk_maquina) references maquina(id_maquina)
 );
 
