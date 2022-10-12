@@ -48,7 +48,7 @@ id_maquina int primary key auto_increment,
 host_name varchar(30) unique not null,
 token_acesso varchar(100) unique not null,
 token_ativo boolean not null,
-tipo varchar(15),
+tipo varchar(15) not null,
 check(tipo = "Maquina" or tipo = "Servidor"),
 memoria_total double,
 disco_total double,
@@ -58,7 +58,7 @@ processador varchar(75),
 fk_empresa int ,
 foreign key (fk_empresa) references empresa(id_empresa),
 setor varchar(45) not null,
-nivel_prioridade char(1),
+nivel_prioridade char(1) not null,
 check (nivel_prioridade = 1 or nivel_prioridade = 2 or nivel_prioridade = 3)
 )auto_increment = 100;
 
