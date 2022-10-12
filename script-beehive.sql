@@ -48,6 +48,8 @@ id_maquina int primary key auto_increment,
 host_name varchar(30) unique not null,
 token_acesso varchar(100) unique not null,
 token_ativo boolean not null,
+tipo varchar(15),
+check(tipo = "Maquina" or tipo = "Servidor"),
 memoria_total double,
 disco_total double,
 arquitetura char(3),
@@ -61,12 +63,17 @@ check (nivel_prioridade = 1 or nivel_prioridade = 2 or nivel_prioridade = 3)
 )auto_increment = 100;
 
 
- insert into maquina values (null,'633791bb8af21','491072A',true,'500000000','200000000','x64','windons','
+ insert into maquina values (null,'633791bb8af21','491072A',true,'maquina','500000000','200000000','x64','windons','
 Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz',1,'Triagem',2);
 
 select * from maquina;
+-- select by componete por setor
+-- select memoria_uso as 'uso_ram' , setor from registro join maquina on id_maquina = fk_maquina where setor = 'triagem' order by id_registro desc;
+-- select cpu_uso as 'uso_cpu' , setor from registro join maquina on id_maquina = fk_maquina where setor = 'triagem' order by id_registro desc ;
+-- select disco_uso as 'uso_disco' , setor from registro join maquina on id_maquina = fk_maquina where setor = 'triagem' order by id_registro desc ;
 
-
+-- select by componete por maquina
+-- select host_name , memoria_uso as 'uso_ram' , cpu_uso as 'uso_cpu' , disco_uso as 'uso_disco' from registro join maquina on id_maquina = fk_maquina order by id_registro desc limit 1;
 
 create table registro(
 id_registro int primary key auto_increment,
@@ -79,6 +86,9 @@ disco_uso double,
 tipo_alerta varchar(15),
 check ( tipo_alerta = "VERDE" or tipo_alerta = "AMARELO" or tipo_alerta = "VERMELHO")
 );
+ 
+ 
+
 select * from empresa;
 select * from registro order by id_registro desc;
 
