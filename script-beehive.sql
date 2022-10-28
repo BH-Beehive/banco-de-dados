@@ -24,7 +24,7 @@ cep char(8) not null,
 logradouro varchar(45) not null,
 estado varchar(30) not null,
 cidade varchar(30) not null,
-fk_plano int not null,
+fk_plano int,
 foreign key (fk_plano) references plano(id_plano),
 plano_ativo boolean
 );
@@ -42,6 +42,19 @@ cpf char(14) unique not null,
 fk_empresa int,
 foreign key (fk_empresa) references empresa(id_empresa)
 );
+insert into usuario_suporte values (null,"Bruno Caldeira","bruno_caldeira@albert.com","bruno@321","(87)2016-3838","(79)90508-4826","772.579.371-25",1);
+select * from usuario_suporte;
+
+create table setor (
+id_setor int primary key auto_increment,
+nome_setor varchar(45),
+nivel_prioridade char(1) not null,
+check (nivel_prioridade = 1 or nivel_prioridade = 2 or nivel_prioridade = 3)
+);
+insert into setor values (null,"Triagem",2),
+(null,"Cirugia",1);
+
+select * from setor;
 
 create table maquina(
 id_maquina int primary key auto_increment,
@@ -57,15 +70,15 @@ sistema_operacional varchar(15),
 processador varchar(75),
 fk_empresa int ,
 foreign key (fk_empresa) references empresa(id_empresa),
-setor varchar(45) not null,
-nivel_prioridade char(1) not null,
-check (nivel_prioridade = 1 or nivel_prioridade = 2 or nivel_prioridade = 3)
+fk_setor int,
+foreign key (fk_setor) references setor(id_setor)
 )auto_increment = 100;
 
 
  insert into maquina values (null,'633791bb8af21','491072A',true,'maquina','500000000','200000000','x64','windons','
-Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz',1,'Triagem',2);
+Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz',1,1);
 
+update maquina set memoria_total = 10.0 , disco_total = 10.0 , arquitetura = 64 , sistema_operacional = "linux" , processador = "alguma" where token_acesso = "138e813kj1323";
 select * from maquina;
 -- select by componete por setor
 -- select memoria_uso as 'uso_ram' , setor from registro join maquina on id_maquina = fk_maquina where setor = 'triagem' order by id_registro desc;
@@ -87,7 +100,7 @@ tipo_alerta varchar(15),
 check ( tipo_alerta = "VERDE" or tipo_alerta = "AMARELO" or tipo_alerta = "VERMELHO")
 );
  
- 
+ use beehive;
 
 select * from empresa;
 select * from registro order by id_registro desc;
