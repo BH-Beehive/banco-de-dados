@@ -84,7 +84,7 @@ select * from maquina;
 
 
 
- insert into maquina values (null,'633791bb8af21','491072A',true,'maquina','500000000','200000000','x64','linux','
+ insert into maquina values (null,'633791bb8af21','491072A',true,'maquina','500000000','200000000','x64','Windows','
 Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz',1,1);
 
 update maquina set memoria_total = 10.0 , disco_total = 10.0 , arquitetura = 64 , sistema_operacional = "linux" , processador = "alguma" where token_acesso = "138e813kj1323";
