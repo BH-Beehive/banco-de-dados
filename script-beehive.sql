@@ -59,7 +59,6 @@ insert into setor values (null,"Triagem",1,2),
 (null,"Laboratorio",1,1);
 
 select * from setor;
-select * from maquina;
 create table maquina(
 id_maquina int primary key auto_increment,
 host_name varchar(30) unique not null,
